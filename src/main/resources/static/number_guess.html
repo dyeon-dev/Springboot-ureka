@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>숫자맞추기 게임(Ajax, Spring)</title>
+</head>
+<body>
+	<h1>숫자맞추기 게임(Ajax, Spring)</h1>
+	<div class="game">
+		<label>1 ~ 100사이 숫자를 입력하세요</label>
+		<input type="text" id="re"> <br>
+		<button id="check_btn">정답확인</button><br>
+		<div>확인결과:<span id="result"></span></div>
+	</div>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	$("#check_btn").click(function(){
+		check_num();//정답확인
+	})
+	function check_num(){//정답확인
+		$.ajax({
+			url:"/check_num", // 정답확인 url
+			data: { "re": $("#re").val() }, // 입력한 숫자 전송 
+			success: function(data){
+				alert("서버응답: "+data) // 정답확인결과수신, 출력 
+			}
+		})
+	}
+</script>
+</body>
+</html>
