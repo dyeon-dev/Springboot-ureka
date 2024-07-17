@@ -20,7 +20,7 @@
 	function check_num(){//정답확인
 		$.ajax({
 			url:"/check_num", // 정답확인 url
-			data: { "re": $("#re").val() }, // 입력한 숫자 전송 
+			data: { "mynum": $("#re").val() }, // 입력한 숫자 전송 
 			success: function(data){
 				alert("서버응답: "+data) // 정답확인결과수신, 출력 
 			}
