@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>약속상세보기</title>
+</head>
+<body>
+	<h1>약속상세보기</h1>
+	<div>
+		<div>번호 : <span id="ys_no"></span></div>
+		<div>제목: <span id="ys_title"></span></div>
+		<div>장소: <span id="ys_place"></span></div>
+		<div>내용: <span id="ys_content"></span></div>
+		<div>일시: <span id="ys_ysdate"></span></div>
+	</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+	//alert(location.href)
+	let url = new URL( location.href );
+	let param = url.searchParams;
+	let no = param.get("no");
+	//alert( no )
+	$.ajax({
+		url:"/yaksok/detail/"+no, // /yaksok/detail/3 -> @PathVarialble("no")
+		//url:"/yaksok/detail?no="+no,  // /yaksok/detail?no=3 -> @RequestParam("no")
+		success: function(data){
+			//alert(data)
+			$("#ys_no").html(data.no)
+			$("#ys_title").html(data.title)
+			$("#ys_content").html(data.content)
+			$("#ys_place").html(data.place)
+			$("#ys_ysdate").html(data.ysdate)
+		}
+	})
+
+</script>	
+</body>
+</html>
