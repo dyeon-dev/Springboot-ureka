@@ -260,11 +260,12 @@ public class YaksokController {
 > 동작원리
 > 
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/03d5e153-2361-4555-be5e-7ae6347830f6/983cc6ff-56d7-4c02-bd38-4894ce00973a/Untitled.png)
+![Untitled](https://github.com/user-attachments/assets/78aa24de-3855-4731-a4cd-aca3b4702ff2)
 
 - Controller 요청 → Repository → DBMS → View(결과)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/03d5e153-2361-4555-be5e-7ae6347830f6/21459bf7-d699-444a-8482-e1d590fd4200/Untitled.png)
+![Untitled](https://github.com/user-attachments/assets/bb11a746-6654-49b7-90f8-3effbc88b2b6)
+
 
 > MVC 패턴의 조건
 > 
