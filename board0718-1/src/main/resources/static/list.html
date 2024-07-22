@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+</head>
+<body>
+    <button id="reg_btn">등록</button>
+	<table id="board_table">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+			</tr>
+		</thead>
+		<tbody id="board_body">
+		</tbody>
+	</table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$("#reg_btn").click(function(){
+		location.href="reg.html"
+	})
+	$.ajax({
+		url:"/board/list",
+		success: function(data){
+			let s = "";
+			for(let d of data){
+				s +="<tr>"
+				s +="<td><a href='detail.html?no="+d.no+"'>"+d.no+"</a></td>"
+				s +="<td><a href='detail.html?no="+d.no+"'>"+d.title+"</a></td>"
+				s +="</tr>"
+			}
+			$("#board_body").html(s)
+		}
+	})
+</script>
+</body>
+</html>

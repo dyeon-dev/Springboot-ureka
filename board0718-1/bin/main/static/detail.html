@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판 상세보기</title>
+</head>
+<body>
+	<h1>게시판 상세보기</h1>
+	<div><a href="board.html">게시물 목록</a></div>
+	<div>
+		<div>번호 : <span id="b_no"></span></div>
+		<div>작성자: <span id="b_author"></span></div>
+		<div>제목: <span id="b_title"></span></div>
+		<div>작성일: <span id="b_regdate"></span></div>
+		<div>내용: <span id="b_content"></span></div>
+	</div>
+	<div>
+		<a href="update_form.html" id="upd">수정하기</a>
+		<a href="#" id="dlt">삭제하기</a>
+	</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+	//alert(location.href)
+	let url = new URL( location.href );
+	let param = url.searchParams;
+	let no = param.get("no");
+	//alert( no )
+	let href = $("#upd").attr("href");
+	$("#upd").attr("href", href+"?no="+no);
+	
+	$.ajax({
+		url:"/board/detail/"+no, 
+		success: function(data){
+			if(data.code=="error") {
+				alert(data.message)
+				return
+			}
+			//alert(data)
+			$("#b_no").html(data.no)
+			$("#b_author").html(data.author)
+			$("#b_title").html(data.title)
+			$("#b_content").html(data.content)
+			$("#b_regdate").html(data.regdate)
+		}
+	})
+	$("#dlt").click(function(){
+		let ans = confirm("진짜로 지우시겠니까?")
+		if(ans){
+			$.ajax({
+				url:"/board/delete/"+no,
+				success:function(data){
+					if(data.code == "ok"){
+						location.href = "board.html";
+					}
+				}
+			})
+			return false;//전송취소
+			
+		}
+	})
+
+</script>	
+</body>
+</html>
